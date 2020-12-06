@@ -4,12 +4,14 @@ class ElectraDevice {
     constructor() {
         this.power = false;
     }
-    onOff(onOrOff) {
-        if (onOrOff === 'on') {
+
+    // Тут та же проблема с этим методом, что в предыдущем задании. Исправила
+    onOff() {
+        if (!this.power) {
             this.power = true;
             console.log(`Электроприбор включен`);
         }
-        else if (onOrOff === 'off') {
+        else {
             this.power = false;
             console.log('Электроприбор выключен');
         }
@@ -25,18 +27,18 @@ class Washer extends ElectraDevice {
         this.powerConsumption = powerConsumption;
         this.maxLoad = maxLoad;
     }
-    onOff(onOrOff) {
-        if (onOrOff === 'on') {
+    onOff() {
+        if (!this.power) {
             this.power = true;
             console.log(`Стиральная машина ${this.name} включена`);
         }
-        else if (onOrOff === 'off') {
+        else {
             this.power = false;
             console.log(`Стиральная машина ${this.name} выключена`);
         }
     }
     wash(washTimeMinute) {
-        if (this.power === true) {
+        if (this.power) {
             console.log(`Положите вещи в машинку. Внимание, максимальная загрузка ${this.maxLoad} кг!`);
             console.log(`Время стирки ${washTimeMinute} минут, потребляемая мощность ${this.powerConsumption} Вт`);
         } else {
@@ -54,18 +56,18 @@ class Fridge extends ElectraDevice {
         this.powerConsumption = powerConsumption;
         this.volume = volume;
     }
-    onOff(onOrOff) {
-        if (onOrOff === 'on') {
+    onOff() {
+        if (!this.power) {
             this.power = true;
             console.log(`Холодильник ${this.name} включен`);
         }
-        else if (onOrOff === 'off') {
+        else {
             this.power = false;
             console.log(`Холодильник ${this.name} выключен`);
         }
     }
     freeze(freezeTimeMinute) {
-        if (this.power === true) {
+        if (this.power) {
             console.log(`Положите продукты в холодильник. Внимание, максимальный объём ${this.volume} л!`);
             console.log(`Время охлаждеия ${freezeTimeMinute} минут, потребляемая мощность ${this.powerConsumption} Вт`);
         } else {
@@ -92,20 +94,20 @@ console.log('===================================================================
 
 //Кейс 2
 washer1.wash(50);
-washer1.onOff('on');
+washer1.onOff();
 washer1.wash(50);
-washer1.onOff('off');
+washer1.onOff();
 washer1.wash(50);
 
 console.log('======================================================================')
 
 //Кейс 3
-washer1.onOff('on');
+washer1.onOff();
 washer1.wash(50);
-washer2.onOff('on');
+washer2.onOff();
 washer2.wash(70);
 
-fridge1.onOff('on');
+fridge1.onOff();
 fridge1.freeze(30);
-fridge2.onOff('on');
+fridge2.onOff();
 fridge2.freeze(40);
